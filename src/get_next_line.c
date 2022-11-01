@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fonctions.c                                        :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncolliot <ncolliot@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ncolliot <ncolliot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 12:22:35 by ncolliot          #+#    #+#             */
-/*   Updated: 2022/10/31 17:00:10 by ncolliot         ###   ########.fr       */
+/*   Updated: 2022/11/01 04:08:30 by ncolliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "get_next_line.h"
+#include "../get_next_line.h"
+#include <fcntl.h> // retirer avant de push
 
 char    *get_next_line(int fd)
 {
     static t_list   *stash = NULL;
     char            *line;
-    int             readed;
 
     if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &line, 0) < 0)
         return (NULL);
-    readed = 1;
     line = NULL;
     // 1. read from fd and add to linked list
     read_and_stash(fd, &stash);
@@ -138,7 +136,7 @@ void	clean_stash(t_list **stash)
 		i++;
 	if (last->content && last->content[i] == '\n')
 		i++;
-	clean_node->content = malloc(sizeof(char) * (ft_strlen(last->content) - i) + 1);
+	clean_node->content = malloc(sizeof(char) * (strlen(last->content) - i) + 1);
 	if (clean_node->content == NULL)
 		return;
 	j = 0;

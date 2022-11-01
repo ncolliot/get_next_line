@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fonction.c                                         :+:      :+:    :+:   */
+/*   fonctions.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncolliot <ncolliot@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ncolliot <ncolliot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 12:22:27 by ncolliot          #+#    #+#             */
-/*   Updated: 2022/10/31 16:55:36 by ncolliot         ###   ########.fr       */
+/*   Updated: 2022/11/01 04:27:25 by ncolliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../get_next_line.h"
 
-t_list  *ft_lst_get_last(t_list *stash)
-{
-    t_list  *current;
-    
-    current = stash;
-    while (current && current->next)
-        current = current->next;
-    return (current);
-}
-
-int	found_new_line(t_list *stash)
+int	found_newline(t_list *stash)
 {
 	int	i;
 	t_list	*current;
@@ -38,6 +28,16 @@ int	found_new_line(t_list *stash)
         i++;
     }
     return (0);
+}
+
+t_list  *ft_lst_get_last(t_list *stash)
+{
+    t_list  *current;
+    
+    current = stash;
+    while (current && current->next)
+        current = current->next;
+    return (current);
 }
 
 void    generate_line(char **line, t_list *stash)

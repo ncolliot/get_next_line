@@ -6,7 +6,7 @@
 /*   By: ncolliot <ncolliot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 12:22:35 by ncolliot          #+#    #+#             */
-/*   Updated: 2022/11/01 04:08:30 by ncolliot         ###   ########.fr       */
+/*   Updated: 2022/11/01 07:05:35 by ncolliot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ char    *get_next_line(int fd)
     if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &line, 0) < 0)
         return (NULL);
     line = NULL;
-    // 1. read from fd and add to linked list
+    // 1. lire depuis le fd pour mettre dans la stash
     read_and_stash(fd, &stash);
 	if (stash == NULL)
 		return (NULL);
-    // 2. extract from stash to line
+    // 2. extraire de la stash jusqu'à line
 	extract_line(stash, &line);
-    // 3. clean up stash
+    // 3. nettoyer la stash
 	clean_stash(&stash);
 	if (line[0] == '\0')
 	{
